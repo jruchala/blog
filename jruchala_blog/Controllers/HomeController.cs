@@ -26,5 +26,10 @@ namespace jruchala_blog.Controllers
 
             return View();
         }
+
+        public ActionResult Post()
+        {
+            return View();
+        }
     }
 }
