@@ -4,55 +4,57 @@
     ViewBag.Title = "Details";
 }
 
-<h2>@Html.DisplayFor(model => model.Title)</h2>
+<div class="container">
+    <div class="row">
+        <h2>@Html.DisplayFor(model => model.Title)</h2>
 
-<div>
+        <div>
 
-    <hr />
-    <dl class="dl-horizontal">
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
+            <hr />
+            <dl class="dl-horizontal">
 
 
-        <dd>
-            @Html.Raw(Model.Body)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Created)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Created)
-        </dd>
+                <dd>
+                    @Html.Raw(Model.Body)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Created)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.MediaUrl)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Created)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.MediaUrl)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.MediaUrl)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Updated)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.MediaUrl)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Updated)
-        </dd>
-    </dl>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Updated)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Updated)
+                </dd>
+            </dl>
+        </div>
+    </div>
+    <div class="row">
+        <p>
+            @{if (User.IsInRole("Admin"))
+                {
+                    <a href="@Url.Action("Edit", "BlogPosts", new { id = Model.Id })" class="btn btn-danger" role="button">Edit</a>
+                }
+
+            }
+
+            <a href="@Url.Action("Index", "BlogPosts")" class="btn btn-primary" role="button">Home</a>
+            
+        </p>
+    </div>
 </div>
-<p>
-    @{if (User.IsInRole("Admin"))
-        {
-            @Html.ActionLink("Edit | ", "Edit", new { id = Model.Id })
-
-        }
-
-    }
-
-    
-    @Html.ActionLink("Home", "Index")
-</p>
