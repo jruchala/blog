@@ -46,11 +46,23 @@ namespace jruchala_blog.Migrations
                     DisplayName = "Moderator"
                 }, "password");
             }
+            if (!context.Users.Any(u => u.Email == "mjaang@coderfoundry.com"))
+            {
+                userManager.Create(new ApplicationUser
+                {
+                    UserName = "mjaang@coderfoundry.com",
+                    Email = "mjaang@coderfoundry.com",
+
+                    DisplayName = "Moderator"
+                }, "Password-1");
+            }
 
             var userId = userManager.FindByEmail("jruchala@gmail.com").Id;
             userManager.AddToRole(userId, "Admin");
             var user_Id = userManager.FindByEmail("ruchalaj0142@forsythtech.edu").Id;
             userManager.AddToRole(user_Id, "Moderator");
+            var user_Id2 = userManager.FindByEmail("mjaang@coderfoundry.com").Id;
+            userManager.AddToRole(user_Id2, "Moderator");
         }
     }
 }
