@@ -13,9 +13,10 @@ namespace jruchala_blog.Models
         public BlogPost()
         {
             this.Comments = new HashSet<Comment>();
+            this.Created = DateTime.Now;
         }
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd", ApplyFormatInEditMode = true)]
+        //[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd", ApplyFormatInEditMode = true)]
         public DateTime Created { get; set; }
 
         [DataType(DataType.Date)]

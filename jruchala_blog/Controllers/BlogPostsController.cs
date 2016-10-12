@@ -46,10 +46,12 @@ namespace jruchala_blog.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult Create([Bind(Include = "Id,Created,Updated,Title,Body,MediaUrl")] BlogPost blogPost)
         {
             if (ModelState.IsValid)
             {
+                blogPost.Created = DateTime.Now;
                 db.Posts.Add(blogPost);
                 db.SaveChanges();
                 return RedirectToAction("Index");

@@ -10,7 +10,7 @@ namespace jruchala_blog.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            return RedirectToAction("Index", "BlogPosts");
         }
 
         public ActionResult About()
