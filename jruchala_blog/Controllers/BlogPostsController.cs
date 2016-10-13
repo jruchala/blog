@@ -36,6 +36,7 @@ namespace jruchala_blog.Controllers
         }
 
         // GET: BlogPosts/Create
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             return View();
@@ -61,6 +62,7 @@ namespace jruchala_blog.Controllers
         }
 
         // GET: BlogPosts/Edit/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -80,6 +82,7 @@ namespace jruchala_blog.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit([Bind(Include = "Id,Created,Updated,Title,Body,MediaUrl")] BlogPost blogPost)
         {
             if (ModelState.IsValid)
@@ -92,6 +95,7 @@ namespace jruchala_blog.Controllers
         }
 
         // GET: BlogPosts/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -109,6 +113,7 @@ namespace jruchala_blog.Controllers
         // POST: BlogPosts/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult DeleteConfirmed(int id)
         {
             BlogPost blogPost = db.Posts.Find(id);

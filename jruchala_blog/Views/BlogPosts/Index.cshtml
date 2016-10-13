@@ -7,13 +7,10 @@
 
 
 <p>
-    @{if (User.IsInRole("Admin"))
-        {
-            <a class="btn btn-primary" href="@Url.Action("Create","BlogPosts")" role="button">Create New</a>
-        }
+    @if (User.IsInRole("Admin"))
+    {
+        <a class="btn btn-primary" href="@Url.Action("Create","BlogPosts")" role="button">Create New</a>
     }
-    
-
 </p>
 
 <div class="container">
@@ -26,7 +23,14 @@
         </div>
         <div class="row">
             <div class="col-md-10">
-                <h4><em>@Html.DisplayFor(modelItem => item.Created)</em></h4>
+                <h4>
+                    <em>@Html.DisplayFor(modelItem => item.Created) </em>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <a class="btn btn-link" href="@Url.Action("Edit", "BlogPosts", new { id = item.Id })" role="button">Edit</a>
+                        <a class="btn btn-link" href="@Url.Action("Delete", "BlogPosts", new { id = item.Id })" role="button">Delete</a>
+                    }
+                </h4>
             </div>
         </div>
         <div class="row">
@@ -37,7 +41,7 @@
     }
 </div>
 
-    <!-- Pager -->
+<!-- Pager -->
 <ul class="pager">
     <li class="next">
         <a href="#">Older Posts &rarr;</a>
