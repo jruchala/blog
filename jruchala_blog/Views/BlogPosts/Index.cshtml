@@ -28,13 +28,14 @@
                     @if (User.IsInRole("Admin"))
                     {
                         <a class="btn btn-link" href="@Url.Action("Edit", "BlogPosts", new { id = item.Id })" role="button">Edit</a>
-                        <a class="btn btn-link" href="@Url.Action("Delete", "BlogPosts", new { id = item.Id })" role="button">Delete</a>
+                        <a class="btn btn-link" href="@Url.Action("Delete", "BlogPosts", new { id = item.I d})" role="button">Delete</a>
                     }
                 </h4>
             </div>
         </div>
         <div class="row">
             <div class="col-md-10">
+                
                 @Html.Raw(item.Body)
             </div>
         </div>

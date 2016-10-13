@@ -149,5 +149,12 @@ namespace jruchala_blog.Models
             }
         }
 
+        public static string PostExcerpt(string post)
+        {
+            string excerpt = post.Substring(0, 150) + "...";
+
+
+            return excerpt;
+        }
     }
 }
