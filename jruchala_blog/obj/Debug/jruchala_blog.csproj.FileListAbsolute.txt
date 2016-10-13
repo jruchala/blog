@@ -80,3 +80,8 @@ c:\users\rucha\onedrive\documents\visual studio 2015\Projects\jruchala_blog\jruc
 c:\users\rucha\onedrive\documents\visual studio 2015\Projects\jruchala_blog\jruchala_blog\obj\Debug\jruchala_blog.csprojResolveAssemblyReference.cache
 c:\users\rucha\onedrive\documents\visual studio 2015\Projects\jruchala_blog\jruchala_blog\obj\Debug\jruchala_blog.dll
 c:\users\rucha\onedrive\documents\visual studio 2015\Projects\jruchala_blog\jruchala_blog\obj\Debug\jruchala_blog.pdb
+C:\Users\rucha\onedrive\documents\visual studio 2015\Projects\jruchala_blog\jruchala_blog\bin\SendGrid.dll
+C:\Users\rucha\onedrive\documents\visual studio 2015\Projects\jruchala_blog\jruchala_blog\bin\SendGrid.SmtpApi.dll
+C:\Users\rucha\onedrive\documents\visual studio 2015\Projects\jruchala_blog\jruchala_blog\bin\SendGridMail.dll
+C:\Users\rucha\onedrive\documents\visual studio 2015\Projects\jruchala_blog\jruchala_blog\bin\System.Net.Http.Formatting.dll
+C:\Users\rucha\onedrive\documents\visual studio 2015\Projects\jruchala_blog\jruchala_blog\bin\System.Net.Http.Formatting.xml
