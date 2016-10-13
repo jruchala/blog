@@ -13,7 +13,7 @@ namespace jruchala_blog.Models
 
         public string Body { get; set; }
         public DateTime Created { get; set; }
-        public DateTime Updated { get; set; }
+        public DateTime? Updated { get; set; }
         public string UpdateReason { get; set; }
 
         public virtual BlogPost Post { get; set;}

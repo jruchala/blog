@@ -21,13 +21,13 @@ namespace jruchala_blog.Controllers
         }
 
         // GET: BlogPosts/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(string slug)
         {
-            if (id == null)
+            if (String.IsNullOrWhiteSpace(slug))
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            BlogPost blogPost = db.Posts.Find(id);
+            BlogPost blogPost = db.Posts.FirstOrDefault(p => p.Slug == slug);
             if (blogPost == null)
             {
                 return HttpNotFound();
@@ -48,10 +48,23 @@ namespace jruchala_blog.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]
-        public ActionResult Create([Bind(Include = "Id,Created,Updated,Title,Body,MediaUrl")] BlogPost blogPost)
+        public ActionResult Create([Bind(Include = "Id,Updated,Title,Body,MediaUrl")] BlogPost blogPost)
         {
             if (ModelState.IsValid)
             {
+
+                var slug = StringUtilities.URLFriendly(blogPost.Title);
+                if (String.IsNullOrWhiteSpace(slug))
+                {
+                    ModelState.AddModelError("Title", "Invalid title.");
+                    return View(blogPost);
+                }
+                if (db.Posts.Any(p => p.Slug == slug))
+                {
+                    ModelState.AddModelError("Title", "The title must be unique.");
+                    return View(blogPost);
+                }
+                blogPost.Slug = slug;
                 blogPost.Created = DateTime.Now;
                 db.Posts.Add(blogPost);
                 db.SaveChanges();
@@ -83,10 +96,11 @@ namespace jruchala_blog.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]
-        public ActionResult Edit([Bind(Include = "Id,Created,Updated,Title,Body,MediaUrl")] BlogPost blogPost)
+        public ActionResult Edit([Bind(Include = "Id,Updated,Created,Title,Body,MediaUrl,Slug")] BlogPost blogPost)
         {
             if (ModelState.IsValid)
             {
+                blogPost.Updated = DateTime.Now;
                 db.Entry(blogPost).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

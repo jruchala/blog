@@ -13,10 +13,8 @@ namespace jruchala_blog.Models
         public BlogPost()
         {
             this.Comments = new HashSet<Comment>();
-            this.Created = DateTime.Now;
         }
         [DataType(DataType.Date)]
-        //[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd", ApplyFormatInEditMode = true)]
         public DateTime Created { get; set; }
 
         [DataType(DataType.Date)]
@@ -29,6 +27,8 @@ namespace jruchala_blog.Models
         [Display(Name="Image")]
         [DataType(DataType.Upload)]
         public string MediaUrl { get; set; }
+
+        public string Slug { get; set; }
 
         public virtual ICollection<Comment> Comments { get; set; }
     }
