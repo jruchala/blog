@@ -18,7 +18,6 @@ namespace jruchala_blog.Models
         public DateTime Created { get; set; }
 
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd", ApplyFormatInEditMode = true)]
         public DateTime? Updated { get; set; }
         public string Title { get; set; }
 
