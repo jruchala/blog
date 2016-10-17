@@ -8,12 +8,14 @@
     <div class="row">
         <h2>@Html.DisplayFor(model => model.Title)</h2>
         <br />
-        <img src="@Url.Content(Model.MediaUrl)" />
-   
-       
+        @if (Model.MediaUrl != null)
+        {
+            <img src="@Url.Content(Model.MediaUrl)" />
+        }
+
 
         <div>
-           
+
 
             <hr />
             <dl class="dl-horizontal">
@@ -50,7 +52,22 @@
             }
 
             <a href="@Url.Action("Index", "BlogPosts")" class="btn btn-primary" role="button">Home</a>
-            
+            <a href="@Url.Action("Create", "Comments")" class="btn btn-default" role="button">Comment</a>
+
         </p>
+    </div>
+    @*Begin Comments section*@
+    <div class="row">
+        <h2>Comments</h2>
+        @*
+            @if (Model.Comments) {
+            @foreach (var comment in Model.Comments)
+            {
+                <p>
+                    @Html.Raw(comment.Body)
+                </p>
+
+            }
+            }*@
     </div>
 </div>
