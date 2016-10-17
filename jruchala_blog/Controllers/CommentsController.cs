@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 using jruchala_blog.Models;
 
 namespace jruchala_blog.Controllers
@@ -50,13 +51,15 @@ namespace jruchala_blog.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,PostId,AuthorId,Body,Created,Updated,UpdateReason")] Comment comment)
+        public ActionResult Create([Bind(Include = "Id,PostId,AuthorId,Body,Updated,UpdateReason")] Comment comment)
         {
             if (ModelState.IsValid)
             {
+                comment.Created = DateTime.Now;
+                comment.AuthorId = User.Identity.GetUserId(); 
                 db.Comments.Add(comment);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", "BlogPosts", new { id = comment.PostId});
             }
 
             ViewBag.AuthorId = new SelectList(db.Users, "Id", "FirstName", comment.AuthorId);

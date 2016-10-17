@@ -105,16 +105,12 @@ namespace jruchala_blog.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]
-        public ActionResult Edit([Bind(Include = "Id,Updated,Created,Title,Body,MediaUrl,Slug")] BlogPost blogPost, HttpPostedFileBase Image)
+        public ActionResult Edit([Bind(Include = "Id,Updated,Created,Title,Body,MediaUrl,Slug")] BlogPost blogPost)
         {
             if (ModelState.IsValid)
             {
-                if (validator.IsWebFriendlyImage(Image))
-                {
-                    var fileName = Path.GetFileName(Image.FileName);
-                    Image.SaveAs(Path.Combine(Server.MapPath("~/Content/Images/Uploads"), fileName));
-                    blogPost.MediaUrl = "~/Content/Images/Uploads/" + fileName;
-                }
+                
+
                 blogPost.Updated = DateTime.Now;
                 db.Entry(blogPost).State = EntityState.Modified;
                 db.SaveChanges();

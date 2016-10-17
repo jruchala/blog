@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace jruchala_blog.Models
 {
@@ -11,6 +12,7 @@ namespace jruchala_blog.Models
         public int PostId { get; set; }
         public string AuthorId { get; set; }
 
+        [AllowHtml]
         public string Body { get; set; }
         public DateTime Created { get; set; }
         public DateTime? Updated { get; set; }

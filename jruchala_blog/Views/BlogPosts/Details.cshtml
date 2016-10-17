@@ -52,22 +52,43 @@
             }
 
             <a href="@Url.Action("Index", "BlogPosts")" class="btn btn-primary" role="button">Home</a>
-            <a href="@Url.Action("Create", "Comments")" class="btn btn-default" role="button">Comment</a>
+            <a href="@Url.Action("Create", "Comments", new { PostId = Model.Id })" class="btn btn-default" role="button">Comment</a>
 
         </p>
     </div>
     @*Begin Comments section*@
+
+    @using (Html.BeginForm("Create", "Comments", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken();
+        <input type="hidden" name="PostId" value="@Model.Id" />
+        <div class="form-horizontal">
+            <div class="form-group">
+                <textarea class="form-control" id="comment" name="Body" rows="6"></textarea>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Submit" class="btn btn-default" />
+            </div>
+        </div>
+    }
+    
     <div class="row">
         <h2>Comments</h2>
-        @*
-            @if (Model.Comments) {
-            @foreach (var comment in Model.Comments)
-            {
-                <p>
-                    @Html.Raw(comment.Body)
-                </p>
 
-            }
-            }*@
+
+        @foreach (var comment in Model.Comments.Reverse())
+        {
+            <p>
+                @Html.Raw(comment.Body)
+                <br />
+                <h6><em>@Html.Raw(comment.Created)</em></h6>
+            </p>
+            <hr class="small" />
+
+
+        }
     </div>
 </div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
