@@ -37,6 +37,7 @@ namespace jruchala_blog.Controllers
         }
 
         // GET: Comments/Create
+        [Authorize]
         public ActionResult Create()
         {
             ViewBag.AuthorId = new SelectList(db.Users, "Id", "FirstName");
@@ -64,6 +65,7 @@ namespace jruchala_blog.Controllers
         }
 
         // GET: Comments/Edit/5
+        [Authorize(Roles = "Admin, Moderator")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -99,6 +101,7 @@ namespace jruchala_blog.Controllers
         }
 
         // GET: Comments/Delete/5
+        [Authorize(Roles = "Admin, Moderator")]
         public ActionResult Delete(int? id)
         {
             if (id == null)

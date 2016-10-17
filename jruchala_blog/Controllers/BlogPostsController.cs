@@ -7,12 +7,15 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using jruchala_blog.Models;
+using System.Drawing;
+using System.IO;
 
 namespace jruchala_blog.Controllers
 {
     public class BlogPostsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
+        private ImageUploadValidator validator = new ImageUploadValidator();
 
         // GET: BlogPosts
         public ActionResult Index()
@@ -48,10 +51,16 @@ namespace jruchala_blog.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]
-        public ActionResult Create([Bind(Include = "Id,Updated,Title,Body,MediaUrl")] BlogPost blogPost)
+        public ActionResult Create([Bind(Include = "Id,Updated,Title,Body,MediaUrl")] BlogPost blogPost, HttpPostedFileBase Image)
         {
             if (ModelState.IsValid)
             {
+                if (validator.IsWebFriendlyImage(Image))
+                {
+                    var fileName = Path.GetFileName(Image.FileName);
+                    Image.SaveAs(Path.Combine(Server.MapPath("~/Content/Images/Uploads"), fileName));
+                    blogPost.MediaUrl = "~/Content/Images/Uploads/" + fileName;
+                }
 
                 var slug = StringUtilities.URLFriendly(blogPost.Title);
                 if (String.IsNullOrWhiteSpace(slug))
