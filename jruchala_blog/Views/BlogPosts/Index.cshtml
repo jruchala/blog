@@ -6,14 +6,14 @@
 
 
 
-<p>
-    @if (User.IsInRole("Admin"))
-    {
-        <a class="btn btn-primary" href="@Url.Action("Create","BlogPosts")" role="button">Create New</a>
-    }
-</p>
 
 <div class="container">
+    <p>
+        @if (User.IsInRole("Admin"))
+        {
+            <a class="btn btn-primary" href="@Url.Action("Create","BlogPosts")" role="button">Create New</a>
+        }
+    </p>
     @foreach (var item in Model.Reverse())
     {
         <div class="row">

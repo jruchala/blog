@@ -71,7 +71,7 @@
             </div>
         </div>
     }
-    
+
     <div class="row">
         <h2>Comments</h2>
 
@@ -82,9 +82,13 @@
                 @Html.Raw(comment.Body)
                 <br />
                 <h6><em>@Html.Raw(comment.Created)</em></h6>
+                @if (User.IsInRole("Admin") || User.IsInRole("Moderator"))
+                {
+                    <a class="btn btn-link" href= "@Url.Action("Edit", "Comments", new { id = comment.Id })" role="button">Edit</a>
+                    <a class="btn btn-link" href= "@Url.Action("Delete", "Comments", new { id = comment.Id })" role="button">Delete</a>
+                }
             </p>
             <hr class="small" />
-
 
         }
     </div>
