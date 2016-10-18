@@ -55,11 +55,13 @@ namespace jruchala_blog.Controllers
         {
             if (ModelState.IsValid)
             {
+                var post = db.Posts.First(p => p.Id == comment.PostId);
+                string postSlug = post.Slug;
                 comment.Created = DateTime.Now;
                 comment.AuthorId = User.Identity.GetUserId(); 
                 db.Comments.Add(comment);
                 db.SaveChanges();
-                return RedirectToAction("Details", "BlogPosts", new { id = comment.PostId});
+                return RedirectToAction("Details", "BlogPosts", new { slug = postSlug });
             }
 
             ViewBag.AuthorId = new SelectList(db.Users, "Id", "FirstName", comment.AuthorId);
