@@ -7,11 +7,15 @@
 }
 
 <div class="container">
-    <div class="search-bar">
-        <form action="@Url.Action("Index")">
-            <input type="text" value="Search" name="query" />
-            <input type="submit" value="Search" />
-        </form>
+    <div class="row">
+        <div class="col-md-2 col-lg-offset-10">
+            <div class="search-bar">
+                <form action="@Url.Action("Index")">
+                    <input type="text" value="" style="font-family: Arial; color: darkslategrey" name="query" />
+                    <input type="submit" value="Search" class="btn btn-default btn-xs"/>
+                </form>
+            </div>
+        </div>
     </div>
     <p>
         @if (User.IsInRole("Admin"))

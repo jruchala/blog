@@ -13,7 +13,6 @@
             {
                 <img src="@Url.Content(Model.MediaUrl)" />
             }
-
         </div>
         <div class="row">
             <div class="col-md-10">
@@ -23,12 +22,11 @@
                 </p>
                 <p>
                     <h5><em>@Html.DisplayFor(model => model.Created)</em></h5>
-                @if (Model.Updated != null)
-                {
-                    <br />
-                    <h5><em>@Html.DisplayNameFor(model => model.Updated): @Html.DisplayFor(model => model.Updated)</em></h5>
-                    
-                }
+                    @if (Model.Updated != null)
+                    {
+                        <br />
+                        <h5><em>@Html.DisplayNameFor(model => model.Updated): @Html.DisplayFor(model => model.Updated)</em></h5>
+                    }
                 </p>
             </div>
         </div>
@@ -38,14 +36,12 @@
                     {
                         <a href="@Url.Action("Edit", "BlogPosts", new { id = Model.Id })" class="btn btn-danger" role="button">Edit</a>
                     }
-
                 }
 
                 <a href="@Url.Action("Index", "BlogPosts")" class="btn btn-primary" role="button">Home</a>
-
-
             </p>
         </div>
+
         @*Begin Comments section*@
         <div class="row">
             <div class="col-md-6">
@@ -53,7 +49,7 @@
                 <h3>Post Your Comment</h3>
 
                 @using (Html.BeginForm("Create", "Comments", FormMethod.Post))
-            {
+                {
                     @Html.AntiForgeryToken();
                     <input type="hidden" name="PostId" value="@Model.Id" />
                     <div class="form-horizontal">
@@ -71,7 +67,10 @@
                     @foreach (var comment in Model.Comments.Reverse())
                     {
                         <p>
-                            <h5>@comment.Author.DisplayName wrote: </h5>
+                            @if (!String.IsNullOrWhiteSpace(comment.Author.DisplayName))
+                            {
+                                <h5>@comment.Author.DisplayName wrote: </h5>
+                            }
                             @Html.Raw(comment.Body)
                             <br />
                             <h6><em>@Html.Raw(comment.Created)</em></h6>
