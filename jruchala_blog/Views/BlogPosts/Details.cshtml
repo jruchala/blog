@@ -6,93 +6,85 @@
 
 <div class="container">
     <div class="row">
-        <h2>@Html.DisplayFor(model => model.Title)</h2>
-        <br />
-        @if (Model.MediaUrl != null)
-        {
-            <img src="@Url.Content(Model.MediaUrl)" />
-        }
-
-
-        <div>
-
-
-            <hr />
-            <dl class="dl-horizontal">
-
-
-                <dd>
-                    @Html.Raw(Model.Body)
-                </dd>
-                <dt>
-                    @Html.DisplayNameFor(model => model.Created)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.Created)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.Updated)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.Updated)
-                </dd>
-            </dl>
-        </div>
-    </div>
-    <div class="row">
-        <p>
-            @{if (User.IsInRole("Admin"))
-                {
-                    <a href="@Url.Action("Edit", "BlogPosts", new { id = Model.Id })" class="btn btn-danger" role="button">Edit</a>
-                }
-
+        <div class="col-md-10">
+            <h2>@Html.DisplayFor(model => model.Title)</h2>
+            <br />
+            @if (Model.MediaUrl != null)
+            {
+                <img src="@Url.Content(Model.MediaUrl)" />
             }
 
-            <a href="@Url.Action("Index", "BlogPosts")" class="btn btn-primary" role="button">Home</a>
-            <a href="@Url.Action("Create", "Comments", new { PostId = Model.Id })" class="btn btn-default" role="button">Comment</a>
-
-        </p>
-    </div>
-    @*Begin Comments section*@
-
-    @using (Html.BeginForm("Create", "Comments", FormMethod.Post))
-    {
-        @Html.AntiForgeryToken();
-        <input type="hidden" name="PostId" value="@Model.Id" />
-        <div class="form-horizontal">
-            <div class="form-group">
-                <textarea class="form-control" id="comment" name="Body" rows="6"></textarea>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Submit" class="btn btn-default" />
+        </div>
+        <div class="row">
+            <div class="col-md-10">
+                <hr />
+                <p>
+                    @Html.Raw(Model.Body)
+                </p>
+                <p>
+                    <h5><em>@Html.DisplayFor(model => model.Created)</em></h5>
+                @if (Model.Updated != null)
+                {
+                    <br />
+                    <h5><em>@Html.DisplayNameFor(model => model.Updated): @Html.DisplayFor(model => model.Updated)</em></h5>
+                    
+                }
+                </p>
             </div>
         </div>
-    }
-
-    <div class="row">
-        <h2>Comments</h2>
-
-
-        @foreach (var comment in Model.Comments.Reverse())
-        {
+        <div class="row">
             <p>
-                @Html.Raw(comment.Body)
-                <br />
-                <h6><em>@Html.Raw(comment.Created)</em></h6>
-                @if (User.IsInRole("Admin") || User.IsInRole("Moderator"))
-                {
-                    <a class="btn btn-link" href= "@Url.Action("Edit", "Comments", new { id = comment.Id })" role="button">Edit</a>
-                    <a class="btn btn-link" href= "@Url.Action("Delete", "Comments", new { id = comment.Id })" role="button">Delete</a>
-                }
-            </p>
-            <hr class="small" />
+                @{if (User.IsInRole("Admin"))
+                    {
+                        <a href="@Url.Action("Edit", "BlogPosts", new { id = Model.Id })" class="btn btn-danger" role="button">Edit</a>
+                    }
 
+                }
+
+                <a href="@Url.Action("Index", "BlogPosts")" class="btn btn-primary" role="button">Home</a>
+
+
+            </p>
+        </div>
+        @*Begin Comments section*@
+
+        <h2>Comments</h2>
+        <h3>Post Your Comment</h3>
+
+        @using (Html.BeginForm("Create", "Comments", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken();
+            <input type="hidden" name="PostId" value="@Model.Id" />
+            <div class="form-horizontal">
+                <div class="form-group">
+                    <textarea class="form-control" id="comment" name="Body" rows="6"></textarea>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Submit" class="btn btn-default" />
+                </div>
+            </div>
         }
+
+        <div class="row">
+
+            <h3>Previous Comments</h3>
+            @foreach (var comment in Model.Comments.Reverse())
+            {
+                <p>
+                    @Html.Raw(comment.Body)
+                    <br />
+                    <h6><em>@Html.Raw(comment.Created)</em></h6>
+                    @if (User.IsInRole("Admin") || User.IsInRole("Moderator"))
+                {
+                        <a class="btn btn-link" href="@Url.Action("Edit", "Comments", new { id = comment.Id })" role="button">Edit</a>
+                        <a class="btn btn-link" href="@Url.Action("Delete", "Comments", new { id = comment.Id })" role="button">Delete</a>
+                    }
+                </p>
+                <hr class="small" />
+
+            }
+        </div>
     </div>
-</div>
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }

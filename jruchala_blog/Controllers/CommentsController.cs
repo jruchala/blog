@@ -55,8 +55,7 @@ namespace jruchala_blog.Controllers
         {
             if (ModelState.IsValid)
             {
-                var post = db.Posts.First(p => p.Id == comment.PostId);
-                string postSlug = post.Slug;
+                string postSlug = db.Posts.FirstOrDefault(p => p.Id == comment.PostId).Slug;
                 comment.Created = DateTime.Now;
                 comment.AuthorId = User.Identity.GetUserId(); 
                 db.Comments.Add(comment);
