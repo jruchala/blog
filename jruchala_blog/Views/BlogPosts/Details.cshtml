@@ -71,9 +71,9 @@
                     @foreach (var comment in Model.Comments.Reverse())
                     {
                         <p>
+                            <h5>@comment.Author.DisplayName wrote: </h5>
                             @Html.Raw(comment.Body)
                             <br />
-                            @comment.Author
                             <h6><em>@Html.Raw(comment.Created)</em></h6>
                             @if (User.IsInRole("Admin") || User.IsInRole("Moderator"))
                             {

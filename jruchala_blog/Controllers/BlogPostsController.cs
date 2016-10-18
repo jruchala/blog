@@ -20,12 +20,23 @@ namespace jruchala_blog.Controllers
         private ImageUploadValidator validator = new ImageUploadValidator();
 
         // GET: BlogPosts
-        public ActionResult Index(int? page)
+        public ActionResult Index(int? page, string query)
         {
+            var result = db.Posts.AsQueryable();
+            if (!String.IsNullOrWhiteSpace(query))
+            {
+                    result = result.Where(p => p.Body.Contains(query))
+                    .Union(db.Posts.Where(p => p.Title.Contains(query)))
+                    .Union(db.Posts.Where(p => p.Comments.Any(c => c.Body.Contains(query))))
+                    .Union(db.Posts.Where(p => p.Comments.Any(c => c.Author.FirstName.Contains(query))))
+                    .Union(db.Posts.Where(p => p.Comments.Any(c => c.Author.DisplayName.Contains(query))));
+            }
+                 
+            
             int pageSize = 3; // number of posts shown per page
             int pageNumber = (page ?? 1); // if no post, set default page as 1
 
-            var qpost = db.Posts.OrderByDescending(p => p.Created).ToPagedList(pageNumber, pageSize);
+            var qpost = result.OrderByDescending(p => p.Created).ToPagedList(pageNumber, pageSize);
             return View(qpost);
         }
 
