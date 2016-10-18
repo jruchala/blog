@@ -1,11 +1,10 @@
-﻿@model IEnumerable<jruchala_blog.Models.BlogPost>
+﻿@model IPagedList<jruchala_blog.Models.BlogPost>
+@using PagedList;
+@using PagedList.Mvc;
 
 @{
     ViewBag.Title = "Index";
 }
-
-
-
 
 <div class="container">
     <p>
@@ -14,7 +13,7 @@
             <a class="btn btn-primary" href="@Url.Action("Create","BlogPosts")" role="button">Create New</a>
         }
     </p>
-    @foreach (var item in Model.Reverse())
+    @foreach (var item in Model)
     {
         <div class="row">
             <div class="col-md-10">
@@ -40,6 +39,10 @@
             </div>
         </div>
     }
+    <div>
+        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+    </div>
 </div>
 
 

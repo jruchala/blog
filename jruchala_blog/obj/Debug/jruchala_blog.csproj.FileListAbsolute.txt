@@ -85,3 +85,7 @@ C:\Users\rucha\onedrive\documents\visual studio 2015\Projects\jruchala_blog\jruc
 C:\Users\rucha\onedrive\documents\visual studio 2015\Projects\jruchala_blog\jruchala_blog\bin\SendGridMail.dll
 C:\Users\rucha\onedrive\documents\visual studio 2015\Projects\jruchala_blog\jruchala_blog\bin\System.Net.Http.Formatting.dll
 C:\Users\rucha\onedrive\documents\visual studio 2015\Projects\jruchala_blog\jruchala_blog\bin\System.Net.Http.Formatting.xml
+C:\Users\rucha\onedrive\documents\visual studio 2015\Projects\jruchala_blog\jruchala_blog\bin\PagedList.dll
+C:\Users\rucha\onedrive\documents\visual studio 2015\Projects\jruchala_blog\jruchala_blog\bin\PagedList.Mvc.dll
+C:\Users\rucha\onedrive\documents\visual studio 2015\Projects\jruchala_blog\jruchala_blog\bin\PagedList.xml
+C:\Users\rucha\onedrive\documents\visual studio 2015\Projects\jruchala_blog\jruchala_blog\bin\PagedList.Mvc.xml

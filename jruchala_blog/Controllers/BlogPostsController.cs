@@ -9,6 +9,8 @@ using System.Web.Mvc;
 using jruchala_blog.Models;
 using System.Drawing;
 using System.IO;
+using PagedList;
+using PagedList.Mvc;
 
 namespace jruchala_blog.Controllers
 {
@@ -18,9 +20,13 @@ namespace jruchala_blog.Controllers
         private ImageUploadValidator validator = new ImageUploadValidator();
 
         // GET: BlogPosts
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
-            return View(db.Posts.ToList());
+            int pageSize = 3; // number of posts shown per page
+            int pageNumber = (page ?? 1); // if no post, set default page as 1
+
+            var qpost = db.Posts.OrderByDescending(p => p.Created).ToPagedList(pageNumber, pageSize);
+            return View(qpost);
         }
 
         // GET: BlogPosts/Details/5

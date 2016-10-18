@@ -96,9 +96,12 @@ namespace jruchala_blog.Controllers
             if (ModelState.IsValid)
             {
                 comment.Updated = DateTime.Now;
+                string postSlug = db.Posts.FirstOrDefault(p => p.Id == comment.PostId).Slug;
+                string author = db.Users.FirstOrDefault(a => a.Id == comment.AuthorId).DisplayName;
                 db.Entry(comment).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                 
+                return RedirectToAction("Details", "BlogPosts", new { slug = postSlug});
             }
             ViewBag.AuthorId = new SelectList(db.Users, "Id", "FirstName", comment.AuthorId);
             ViewBag.PostId = new SelectList(db.Posts, "Id", "Title", comment.PostId);

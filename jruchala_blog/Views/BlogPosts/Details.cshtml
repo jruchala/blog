@@ -47,42 +47,44 @@
             </p>
         </div>
         @*Begin Comments section*@
+        <div class="row">
+            <div class="col-md-6">
+                <h2>Comments</h2>
+                <h3>Post Your Comment</h3>
 
-        <h2>Comments</h2>
-        <h3>Post Your Comment</h3>
+                @using (Html.BeginForm("Create", "Comments", FormMethod.Post))
+            {
+                    @Html.AntiForgeryToken();
+                    <input type="hidden" name="PostId" value="@Model.Id" />
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <textarea class="form-control" id="comment" name="Body" rows="6"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Submit" class="btn btn-default" />
+                        </div>
+                    </div>
+                }
 
-        @using (Html.BeginForm("Create", "Comments", FormMethod.Post))
-        {
-            @Html.AntiForgeryToken();
-            <input type="hidden" name="PostId" value="@Model.Id" />
-            <div class="form-horizontal">
-                <div class="form-group">
-                    <textarea class="form-control" id="comment" name="Body" rows="6"></textarea>
-                </div>
-                <div class="form-group">
-                    <input type="submit" value="Submit" class="btn btn-default" />
+                <div class="row">
+                    <h3>Previous Comments</h3>
+                    @foreach (var comment in Model.Comments.Reverse())
+                    {
+                        <p>
+                            @Html.Raw(comment.Body)
+                            <br />
+                            @comment.Author
+                            <h6><em>@Html.Raw(comment.Created)</em></h6>
+                            @if (User.IsInRole("Admin") || User.IsInRole("Moderator"))
+                            {
+                                <a class="btn btn-link" href="@Url.Action("Edit", "Comments", new { id = comment.Id })" role="button">Edit</a>
+                                <a class="btn btn-link" href="@Url.Action("Delete", "Comments", new { id = comment.Id })" role="button">Delete</a>
+                            }
+                        </p>
+                        <hr class="small" />
+                    }
                 </div>
             </div>
-        }
-
-        <div class="row">
-
-            <h3>Previous Comments</h3>
-            @foreach (var comment in Model.Comments.Reverse())
-            {
-                <p>
-                    @Html.Raw(comment.Body)
-                    <br />
-                    <h6><em>@Html.Raw(comment.Created)</em></h6>
-                    @if (User.IsInRole("Admin") || User.IsInRole("Moderator"))
-                {
-                        <a class="btn btn-link" href="@Url.Action("Edit", "Comments", new { id = comment.Id })" role="button">Edit</a>
-                        <a class="btn btn-link" href="@Url.Action("Delete", "Comments", new { id = comment.Id })" role="button">Delete</a>
-                    }
-                </p>
-                <hr class="small" />
-
-            }
         </div>
     </div>
     @section Scripts {
