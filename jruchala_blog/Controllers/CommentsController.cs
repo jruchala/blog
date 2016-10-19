@@ -16,6 +16,7 @@ namespace jruchala_blog.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Comments
+        [Authorize(Roles="Admin, Moderator")]
         public ActionResult Index()
         {
             var comments = db.Comments.Include(c => c.Author).Include(c => c.Post);
@@ -23,6 +24,8 @@ namespace jruchala_blog.Controllers
         }
 
         // GET: Comments/Details/5
+
+        [Authorize (Roles="Admin, Moderator")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -130,9 +133,10 @@ namespace jruchala_blog.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Comment comment = db.Comments.Find(id);
+            string postSlug = db.Posts.FirstOrDefault(p => p.Id == comment.PostId).Slug;
             db.Comments.Remove(comment);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Details", "BlogPosts", new { slug = postSlug });
         }
 
         protected override void Dispose(bool disposing)

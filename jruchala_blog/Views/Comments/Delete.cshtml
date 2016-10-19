@@ -28,7 +28,7 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-danger" /> |
+            <input type="submit" value="Delete" class="btn btn-danger" /> 
             <a href="@Url.Action("Details", "BlogPosts", new { Model.Post.Slug })" role="button" class="btn btn-link">Back to Post</a>
         </div>
     }
