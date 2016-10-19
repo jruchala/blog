@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace jruchala_blog.Models
 {
@@ -151,9 +152,12 @@ namespace jruchala_blog.Models
 
         public static string PostExcerpt(string post)
         {
-            string excerpt = post.Substring(0, 150) + "...";
-
-
+            string excerpt = Regex.Replace(post, @"<[^>]*>", String.Empty);
+            if (excerpt.Length > 150)
+            {
+                excerpt = excerpt.Substring(0, 150) + "...";
+                return excerpt;
+            }
             return excerpt;
         }
     }
