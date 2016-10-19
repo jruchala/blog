@@ -152,7 +152,8 @@ namespace jruchala_blog.Models
 
         public static string PostExcerpt(string post)
         {
-            string excerpt = Regex.Replace(post, @"<[^>]*>", String.Empty);
+            string excerpt = Regex.Replace(post, @"(?></?\w+)(?>(?:[^>'""]+|'[^']*'|""[^""]*"")*)>", String.Empty);
+            excerpt = Regex.Replace(excerpt, @"&[a-z]{1,6};", String.Empty);
             if (excerpt.Length > 150)
             {
                 excerpt = excerpt.Substring(0, 150) + "...";
