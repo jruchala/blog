@@ -247,3 +247,5 @@ ModelManifest.xml
 # Config files
 jruchala_blog/Private.config
 jruchala_blog/Web.config
+jruchala_blog/App_Start/Startup.Auth.cs
+jruchala_blog/Migrations/Configurations.cs
