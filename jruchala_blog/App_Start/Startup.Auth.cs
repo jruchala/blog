@@ -54,9 +54,9 @@ namespace jruchala_blog
             //   consumerKey: "",
             //   consumerSecret: "");
 
-            //app.UseFacebookAuthentication(
-            //   appId: "",
-            //   appSecret: "");
+            app.UseFacebookAuthentication(
+               appId: "1741959616066812",
+               appSecret: "91dfe9093c1017b8600011388f20df45");
 
             app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             {
