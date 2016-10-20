@@ -249,3 +249,4 @@ jruchala_blog/Private.config
 jruchala_blog/Web.config
 jruchala_blog/App_Start/Startup.Auth.cs
 jruchala_blog/Migrations/Configurations.cs
+jruchala_blog/App_Start/IdentityConfig.cs
