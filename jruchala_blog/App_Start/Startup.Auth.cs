@@ -6,6 +6,7 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
 using jruchala_blog.Models;
+using Owin.Security.Providers.LinkedIn;
 
 namespace jruchala_blog
 {
@@ -63,6 +64,8 @@ namespace jruchala_blog
                 ClientId = "538685909710-mn5l0f46erse59darg9mdsdh5p5lv6cu.apps.googleusercontent.com",
                 ClientSecret = "R-BgOFrnChM8q6wZYX_7_nk2"
             });
+
+            app.UseLinkedInAuthentication("7842jurvy3wpic", "haEZr2UOlhrcAz1G");
         }
     }
 }
