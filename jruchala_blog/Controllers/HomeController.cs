@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace jruchala_blog.Controllers
 {
+    [RequireHttps]
     public class HomeController : Controller
     {
         public ActionResult Index()

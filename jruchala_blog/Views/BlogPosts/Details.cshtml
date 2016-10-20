@@ -47,27 +47,27 @@
         <div class="row">
             <div class="col-md-6">
                 <h2>Comments</h2>
-                
+
 
                 @using (Html.BeginForm("Create", "Comments", FormMethod.Post))
                 {
                     @Html.AntiForgeryToken();
                     <input type="hidden" name="PostId" value="@Model.Id" /> // passes Post ID as PostId to comments controller
-                    <div class="form-horizontal">
-                        <div class="form-group">
-                            <textarea class="form-control" id="comment" name="Body" rows="6" placeholder="Post your comment"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <input type="submit" value="Submit" class="btn btn-default" />
-                        </div>
-                    </div>
+                                                                            <div class="form-horizontal">
+                                                                                <div class="form-group">
+                                                                                    <textarea class="form-control" id="comment" name="Body" rows="6" placeholder="Post your comment"></textarea>
+                                                                                </div>
+                                                                                <div class="form-group">
+                                                                                    <input type="submit" value="Submit" class="btn btn-default" />
+                                                                                </div>
+                                                                            </div>
                 }
 
                 <div class="row">
                     @foreach (var comment in Model.Comments.Reverse())
                     {
                         <p>
-                            @if (!String.IsNullOrWhiteSpace(comment.Author.DisplayName))
+                            @if (!String.IsNullOrWhiteSpace(comment.AuthorId))
                             {
                                 <h5>@comment.Author.DisplayName wrote: </h5>
                             }

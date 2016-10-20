@@ -12,6 +12,7 @@ using jruchala_blog.Models;
 
 namespace jruchala_blog.Controllers
 {
+    [RequireHttps]
     [Authorize]
     public class AccountController : Controller
     {

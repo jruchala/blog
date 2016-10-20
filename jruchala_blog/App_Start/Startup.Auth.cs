@@ -58,11 +58,11 @@ namespace jruchala_blog
             //   appId: "",
             //   appSecret: "");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "538685909710-mn5l0f46erse59darg9mdsdh5p5lv6cu.apps.googleusercontent.com",
+                ClientSecret = "R-BgOFrnChM8q6wZYX_7_nk2"
+            });
         }
     }
 }

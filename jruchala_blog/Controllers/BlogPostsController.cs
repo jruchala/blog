@@ -14,6 +14,7 @@ using PagedList.Mvc;
 
 namespace jruchala_blog.Controllers
 {
+    [RequireHttps]
     public class BlogPostsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
