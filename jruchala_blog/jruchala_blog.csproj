@@ -456,6 +456,10 @@
     <Content Include="Content\Images\home-bg.jpg" />
     <Content Include="Content\Images\post-bg.jpg" />
     <Content Include="Content\Images\post-sample-image.jpg" />
+    <Content Include="Content\Images\uploads\13628038_1834544433498546_3270123790629076992_n.jpg" />
+    <Content Include="Content\Images\uploads\14482216_1604372783198720_8355309758504239104_n.jpg" />
+    <Content Include="Content\Images\uploads\14488233_649331601902143_4702325324614991872_n.jpg" />
+    <Content Include="Content\Images\uploads\14566628_586097374931882_9026068330267541504_n.jpg" />
     <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\font-awesome.min.css" />
@@ -463,6 +467,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <None Include="Private.config">
+      <SubType>Designer</SubType>
+    </None>
     <Content Include="Scripts\ai.0.22.9-build00167.js" />
     <Content Include="Scripts\ai.0.22.9-build00167.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -473,7 +480,6 @@
     <Content Include="fonts\fontawesome-webfont.woff" />
     <Content Include="fonts\fontawesome-webfont.woff2" />
     <Content Include="fonts\FontAwesome.otf" />
-    <Content Include="Private.config" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\clean-blog.js" />
@@ -488,6 +494,8 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <None Include="Properties\PublishProfiles\jruchala-blog - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\jruchala-blog - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.1.1.js" />
     <Content Include="Scripts\jquery-3.1.1.min.js" />
@@ -728,7 +736,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\Images\uploads\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
