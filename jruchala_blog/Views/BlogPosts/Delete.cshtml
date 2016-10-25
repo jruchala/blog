@@ -20,6 +20,16 @@
             <dd>
                 <h2>@Html.DisplayFor(model => model.Title)</h2>
             </dd>
+            <dd>
+                @if (Model.MediaUrl != null)
+                {
+                    <img src="@Url.Content(Model.MediaUrl)" />
+                }
+            </dd>
+            <dd>
+                @Html.Raw(Model.Body)
+            </dd>
+
             <dt>
                 @Html.DisplayNameFor(model => model.Created)
             </dt>
@@ -36,13 +46,6 @@
                 <em>@Html.DisplayFor(model => model.Updated)</em>
             </dd>
 
-            <dd>
-                @Html.Raw(Model.Body)
-            </dd>
-
-            <dd>
-                @Html.DisplayFor(model => model.MediaUrl)
-            </dd>
 
         </dl>
 
