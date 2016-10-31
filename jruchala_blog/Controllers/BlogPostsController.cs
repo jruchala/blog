@@ -69,7 +69,7 @@ namespace jruchala_blog.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]
-        public ActionResult Create([Bind(Include = "Id,Updated,Title,Body,MediaUrl")] BlogPost blogPost, HttpPostedFileBase Image)
+        public ActionResult Create([Bind(Include = "Id,Title,Body,MediaUrl")] BlogPost blogPost, HttpPostedFileBase Image)
         {
             if (ModelState.IsValid)
             {
