@@ -456,12 +456,11 @@
     <Content Include="Content\Images\home-bg.jpg" />
     <Content Include="Content\Images\post-bg.jpg" />
     <Content Include="Content\Images\post-sample-image.jpg" />
-    <Content Include="Content\Images\Uploads\13628038_1834544433498546_3270123790629076992_n.jpg" />
-    <Content Include="Content\Images\Uploads\14482216_1604372783198720_8355309758504239104_n.jpg" />
-    <Content Include="Content\Images\Uploads\14488233_649331601902143_4702325324614991872_n.jpg" />
-    <Content Include="Content\Images\Uploads\14566628_586097374931882_9026068330267541504_n.jpg" />
-    <Content Include="Content\Images\Uploads\alley.jpg" />
-    <Content Include="Content\Images\Uploads\mantis.jpg" />
+    <Content Include="Content\Images\uploads\13628038_1834544433498546_3270123790629076992_n.jpg" />
+    <Content Include="Content\Images\uploads\14482216_1604372783198720_8355309758504239104_n.jpg" />
+    <Content Include="Content\Images\uploads\14488233_649331601902143_4702325324614991872_n.jpg" />
+    <Content Include="Content\Images\uploads\14566628_586097374931882_9026068330267541504_n.jpg" />
+
     <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\font-awesome.min.css" />

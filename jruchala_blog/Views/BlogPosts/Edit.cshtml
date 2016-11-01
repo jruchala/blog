@@ -38,13 +38,13 @@
 
             <div class="form-group">
                 @Html.LabelFor(model => model.MediaUrl, htmlAttributes: new { @class = "control-label col-md-2" })
+                
+                @if (Model.MediaUrl != null)
+                {
+                    <img src="@Url.Content(Model.MediaUrl)" />
+                }
+                
                 <div class="col-md-10">
-                    
-                        @if (Model.MediaUrl != null)
-                        {
-                            <img src="@Url.Content(Model.MediaUrl)" />
-                        }
-                    
                     <h4>Current Image: @Model.MediaUrl</h4>
                     <input type="file" name="Image" id="fileUpload" onchange="loadFile(event)" />
                     @Html.ValidationMessageFor(model => model.MediaUrl, "", new { @class = "text-danger" })
